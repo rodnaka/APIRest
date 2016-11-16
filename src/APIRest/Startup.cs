@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using APIRest.Data;
 
 namespace APIRest
 {
@@ -29,6 +31,7 @@ namespace APIRest
         {
             // Add framework services.
             services.AddMvc();
+            services.AddEntityFrameworkSqlServer().AddDbContext<CotacaoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ServidorCotacoes")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
